@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from jobs.views import HomePageView, JobDetails
+from jobs.admin_views import DashBoardView, SettingsView, AdminView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', HomePageView.as_view(), name='index'),
+    url(r'^details/([\w\-]+)/?$', JobDetails.as_view(), name='index'),
+
+    url(r'^admin/settings', SettingsView.as_view(), name='settings'),
+    url(r'^admin/create', AdminView.as_view(), name='create'),
+    url(r'^admin/', DashBoardView.as_view(), name='admin'),
+
 ]
